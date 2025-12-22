@@ -7,13 +7,14 @@ import Link from "next/link"
 import { ThemeToggle } from "@/components/theme-toggle"
 
 const layananDropdown = [
-  { name: "Angsae Baru App Form", href: "/angsae-baru-app-form" },
-  { name: "Form Absensi", href: "/angsae-baru-app-form" },
-  { name: "Form Cuti", href: "/angsae-baru-app-form" },
-  { name: "Form Sakit", href: "/angsae-baru-app-form" },
-  { name: "Form Lembur", href: "/angsae-baru-app-form" },
+  { name: "Form Absensi Digital", href: "/absensi-digital" },
+  { name: "Form Pengajuan Cuti", href: "https://docs.google.com/forms/d/e/1FAIpQLSdeO6fNTDfSp7Gm8v4hTjCsNItfkqL0I18eCkuc8gr2KitR8A/viewform" },
+  { name: "Form Izin Sakit", href: "https://docs.google.com/forms/d/e/1FAIpQLSdf5xaPhmA-UP1QQ-jFTZhGqc_KHh644utBIkzQwumWiLoIEQ/viewform" },
+  { name: "Form Lembur", href: "https://docs.google.com/forms/d/e/1FAIpQLSdHE9boh7qmdnXPyvQvjQ3iLvoczltk482hDUJTVM_CiTtP5A/viewform" },
   { name: "Form Pengajuan No. Surat", href: "/form-pengajuan-no-surat" },
-  { name: "Absensi Digital", href: "/absensi-digital" },
+  { name: "Dezavasi's Sales Form App", href: "https://docs.google.com/forms/d/e/1FAIpQLSewbtzCYbBgxQfgmeRme2QKK4e42m9ePhpEf25Q6MlHBB85JQ/viewform" },
+  { name: "Form Klaim Operasional Non-Perjalanan Dinas", href: "https://docs.google.com/forms/d/e/1FAIpQLSeNsXiBpNsuP3ZIOid-RqkRUm63q95Cx0Okx7TfYYuCyahqPA/viewform" },
+  { name: "Form Perjalanan Dinas", href: "https://docs.google.com/forms/d/e/1FAIpQLSdhsP0C3nv5Rg0S0uvB2C7_pmAUuhQftpNnkBaCY3EDNRVOcw/viewform" },
 ]
 
 const videoDropdown = [
