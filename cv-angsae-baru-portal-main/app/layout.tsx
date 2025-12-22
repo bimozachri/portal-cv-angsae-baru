@@ -14,21 +14,8 @@ export const metadata: Metadata = {
     "Portal layanan digital terpadu CV. Angsae Baru - Akses form karyawan, absensi, dan administrasi dengan mudah.",
   generator: "v0.app",
   icons: {
-    icon: [
-      {
-        url: "/icon-light-32x32.png",
-        media: "(prefers-color-scheme: light)",
-      },
-      {
-        url: "/icon-dark-32x32.png",
-        media: "(prefers-color-scheme: dark)",
-      },
-      {
-        url: "/icon.svg",
-        type: "image/svg+xml",
-      },
-    ],
-    apple: "/apple-icon.png",
+    icon: "/images/forms/ab-logo.png", 
+    apple: "/images/forms/ab-logo.png", 
   },
 }
 
