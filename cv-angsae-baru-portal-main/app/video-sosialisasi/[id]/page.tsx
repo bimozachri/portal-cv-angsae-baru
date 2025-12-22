@@ -47,14 +47,10 @@ export default async function VideoPage({ params }: { params: Promise<{ id: stri
               <Link href="/">
                 <Button variant="ghost" size="sm" className="gap-2">
                   <ArrowLeft className="h-4 w-4" />
-                  Kembali ke Portal
+                  Kembali ke Dashboard
                 </Button>
               </Link>
-
-              <div className="flex items-center gap-3">
-                <Image src="/images/image.png" alt="CV. Angsae Baru Logo" width={32} height={32} className="h-8 w-8 object-contain" />
-                <span className="font-semibold text-foreground">Video Sosialisasi</span>
-              </div>
+              <span className="font-semibold text-foreground">Video Sosialisasi</span>
             </div>
 
             {/* Bagian Kanan: Theme Toggle */}
