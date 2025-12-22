@@ -100,3 +100,9 @@ export default async function VideoPage({ params }: { params: Promise<{ id: stri
     </div>
   );
 }
+
+export async function generateStaticParams() {
+  return Object.keys(videoData).map((id) => ({
+    id: id,
+  }));
+}
