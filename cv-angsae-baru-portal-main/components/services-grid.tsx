@@ -1,21 +1,21 @@
-"use client"
+"use client";
 
-import type React from "react"
-import { ServiceCard } from "@/components/service-card"
-import { 
-  ShoppingCart, 
-  PlayCircle, 
-  FileText, 
-  UserCheck, 
-  CalendarDays, 
-  Activity, 
-  Clock, 
+import type React from "react";
+import { ServiceCard } from "@/components/service-card";
+import {
+  ShoppingCart,
+  PlayCircle,
+  FileText,
+  UserCheck,
+  CalendarDays,
+  Activity,
+  Clock,
   Search,
   Briefcase,
-  Receipt // Icon untuk Klaim Operasional
-} from "lucide-react"
-import { useEffect, useRef, useState } from "react"
-import { Input } from "@/components/ui/input"
+  Receipt, // Icon untuk Klaim Operasional
+} from "lucide-react";
+import { useEffect, useRef, useState } from "react";
+import { Input } from "@/components/ui/input";
 
 // DATA LAYANAN LENGKAP
 const services = [
@@ -25,7 +25,7 @@ const services = [
     icon: UserCheck,
     buttonText: "Isi Absen",
     href: "/absensi-digital", // Tetap Internal
-    color: "secondary" as const,
+    color: "primary" as const,
   },
   {
     title: "Form Pengajuan No. Surat",
@@ -33,7 +33,7 @@ const services = [
     icon: FileText,
     buttonText: "Isi Form",
     href: "/form-pengajuan-no-surat", // Tetap Internal
-    color: "primary" as const,
+    color: "secondary" as const,
   },
   {
     title: "Form Pengajuan Cuti",
@@ -41,7 +41,7 @@ const services = [
     icon: CalendarDays,
     buttonText: "Isi Form",
     href: "https://docs.google.com/forms/d/e/1FAIpQLSdeO6fNTDfSp7Gm8v4hTjCsNItfkqL0I18eCkuc8gr2KitR8A/viewform", // External
-    color: "primary" as const,
+    color: "accent" as const,
   },
   {
     title: "Form Izin Sakit",
@@ -57,7 +57,7 @@ const services = [
     icon: Clock,
     buttonText: "Isi Form",
     href: "https://docs.google.com/forms/d/e/1FAIpQLSdHE9boh7qmdnXPyvQvjQ3iLvoczltk482hDUJTVM_CiTtP5A/viewform", // External
-    color: "primary" as const,
+    color: "secondary" as const,
   },
   {
     title: "Form Perjalanan Dinas",
@@ -65,7 +65,7 @@ const services = [
     icon: Briefcase,
     buttonText: "Isi Form",
     href: "https://docs.google.com/forms/d/e/1FAIpQLSdhsP0C3nv5Rg0S0uvB2C7_pmAUuhQftpNnkBaCY3EDNRVOcw/viewform", // External
-    color: "primary" as const,
+    color: "accent" as const,
   },
   {
     title: "Form Klaim Operasional Non-Perjalanan Dinas",
@@ -91,98 +91,74 @@ const services = [
     href: "/video-sosialisasi", // Tetap Internal
     color: "accent" as const,
   },
-]
+];
 
 function AnimatedCard({ children, delay }: { children: React.ReactNode; delay: number }) {
-  const [isVisible, setIsVisible] = useState(false)
-  const ref = useRef<HTMLDivElement>(null)
+  const [isVisible, setIsVisible] = useState(false);
+  const ref = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
-          setIsVisible(true)
-          observer.disconnect()
+          setIsVisible(true);
+          observer.disconnect();
         }
       },
-      { threshold: 0.1, rootMargin: "0px 0px -50px 0px" },
-    )
+      { threshold: 0.1, rootMargin: "0px 0px -50px 0px" }
+    );
 
     if (ref.current) {
-      observer.observe(ref.current)
+      observer.observe(ref.current);
     }
 
-    return () => observer.disconnect()
-  }, [])
+    return () => observer.disconnect();
+  }, []);
 
   return (
-    <div
-      ref={ref}
-      className={`transition-all duration-700 ease-out ${
-        isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
-      }`}
-      style={{ transitionDelay: `${delay}ms` }}
-    >
+    <div ref={ref} className={`transition-all duration-700 ease-out ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`} style={{ transitionDelay: `${delay}ms` }}>
       {children}
     </div>
-  )
+  );
 }
 
 export function ServicesGrid() {
-  const [headerVisible, setHeaderVisible] = useState(false)
-  const headerRef = useRef<HTMLDivElement>(null)
-  
-  const [searchQuery, setSearchQuery] = useState("")
+  const [headerVisible, setHeaderVisible] = useState(false);
+  const headerRef = useRef<HTMLDivElement>(null);
 
-  const filteredServices = services.filter((service) => 
-    service.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
-    service.description.toLowerCase().includes(searchQuery.toLowerCase())
-  )
+  const [searchQuery, setSearchQuery] = useState("");
+
+  const filteredServices = services.filter((service) => service.title.toLowerCase().includes(searchQuery.toLowerCase()) || service.description.toLowerCase().includes(searchQuery.toLowerCase()));
 
   useEffect(() => {
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
-          setHeaderVisible(true)
-          observer.disconnect()
+          setHeaderVisible(true);
+          observer.disconnect();
         }
       },
-      { threshold: 0.1 },
-    )
+      { threshold: 0.1 }
+    );
 
     if (headerRef.current) {
-      observer.observe(headerRef.current)
+      observer.observe(headerRef.current);
     }
 
-    return () => observer.disconnect()
-  }, [])
+    return () => observer.disconnect();
+  }, []);
 
   return (
     <section id="services" className="py-16 md:py-24 bg-muted/30">
       <div className="container mx-auto px-4">
-        <div
-          ref={headerRef}
-          className={`text-center mb-12 transition-all duration-700 ease-out ${
-            headerVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
-          }`}
-        >
+        <div ref={headerRef} className={`text-center mb-12 transition-all duration-700 ease-out ${headerVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}>
           <p className="text-sm font-medium text-primary uppercase tracking-wider mb-3">Layanan Kami</p>
-          <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4 text-balance">
-            Akses Semua Layanan Digital
-          </h2>
-          <p className="text-muted-foreground max-w-2xl mx-auto text-pretty mb-8">
-            Pilih layanan yang Anda butuhkan untuk mengelola administrasi dan aktivitas kerja harian.
-          </p>
+          <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4 text-balance">Akses Semua Layanan Digital</h2>
+          <p className="text-muted-foreground max-w-2xl mx-auto text-pretty mb-8">Pilih layanan yang Anda butuhkan untuk mengelola administrasi dan aktivitas kerja harian.</p>
 
           <div className="max-w-md mx-auto relative">
             <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
-            <Input 
-              type="text" 
-              placeholder="Cari layanan (cth: cuti, lembur, surat)..." 
-              className="pl-10 bg-background shadow-sm"
-              value={searchQuery}
-              onChange={(e) => setSearchQuery(e.target.value)}
-            />
+            <Input type="text" placeholder="Cari layanan (cth: cuti, lembur, surat)..." className="pl-10 bg-background shadow-sm" value={searchQuery} onChange={(e) => setSearchQuery(e.target.value)} />
           </div>
         </div>
 
@@ -196,11 +172,10 @@ export function ServicesGrid() {
           </div>
         ) : (
           <div className="text-center py-12">
-             <p className="text-muted-foreground">Layanan tidak ditemukan.</p>
+            <p className="text-muted-foreground">Layanan tidak ditemukan.</p>
           </div>
         )}
-        
       </div>
     </section>
-  )
+  );
 }
