@@ -35,18 +35,8 @@ export function Footer() {
             <h4 className="font-semibold text-background mb-4">Layanan</h4>
             <ul className="space-y-3 text-sm text-background/70">
               <li>
-                <a href="/angsae-baru-app-form" className="hover:text-primary transition-colors">
-                  Angsae Baru App Form
-                </a>
-              </li>
-              <li>
-                <a href="#" className="hover:text-primary transition-colors">
-                  Dezavasi{"'"}s Sales Form
-                </a>
-              </li>
-              <li>
-                <a href="/video-sosialisasi" className="hover:text-primary transition-colors">
-                  Video Sosialisasi
+                <a href="/absensi-digital" className="hover:text-primary transition-colors">
+                  Absensi Digital
                 </a>
               </li>
               <li>
@@ -55,8 +45,38 @@ export function Footer() {
                 </a>
               </li>
               <li>
-                <a href="/absensi-digital" className="hover:text-primary transition-colors">
-                  Absensi Digital
+                <a href="https://docs.google.com/forms/d/e/1FAIpQLSdeO6fNTDfSp7Gm8v4hTjCsNItfkqL0I18eCkuc8gr2KitR8A/viewform" className="hover:text-primary transition-colors">
+                  Form Pengajuan Cuti
+                </a>
+              </li>
+              <li>
+                <a href="https://docs.google.com/forms/d/e/1FAIpQLSdf5xaPhmA-UP1QQ-jFTZhGqc_KHh644utBIkzQwumWiLoIEQ/viewform" className="hover:text-primary transition-colors">
+                  Form Izin Sakit
+                </a>
+              </li>
+              <li>
+                <a href="https://docs.google.com/forms/d/e/1FAIpQLSdHE9boh7qmdnXPyvQvjQ3iLvoczltk482hDUJTVM_CiTtP5A/viewform" className="hover:text-primary transition-colors">
+                  Form Lembur
+                </a>
+              </li>
+              <li>
+                <a href="https://docs.google.com/forms/d/e/1FAIpQLSdhsP0C3nv5Rg0S0uvB2C7_pmAUuhQftpNnkBaCY3EDNRVOcw/viewform" className="hover:text-primary transition-colors">
+                  Form Perjalanan Dinas
+                </a>
+              </li>
+              <li>
+                <a href="https://docs.google.com/forms/d/e/1FAIpQLSeNsXiBpNsuP3ZIOid-RqkRUm63q95Cx0Okx7TfYYuCyahqPA/viewform" className="hover:text-primary transition-colors">
+                  Form Klaim Operasional Non-Perjalanan Dinas
+                </a>
+              </li>
+              <li>
+                <a href="https://docs.google.com/forms/d/e/1FAIpQLSewbtzCYbBgxQfgmeRme2QKK4e42m9ePhpEf25Q6MlHBB85JQ/viewform" className="hover:text-primary transition-colors">
+                  Dezavasi{"'"}s Sales Form
+                </a>
+              </li>
+              <li>
+                <a href="/video-sosialisasi" className="hover:text-primary transition-colors">
+                  Video Sosialisasi
                 </a>
               </li>
             </ul>
