@@ -39,7 +39,15 @@ export default function AbsensiDigitalPage() {
 
       {/* Embedded Content */}
       <div className="flex-1 w-full">
-        <iframe src="https://script.google.com/a/~/macros/s/AKfycbzkxNuXD4nTzjCyVYnrDD-KQ7ivwDnPFHRG5lXS_M0HFIwpQNlwHUGD4mxZ4lqaJrBzqQ/exec" frameBorder="0" width="100%" height="1000px" title="Absensi Digital" />
+        <iframe 
+          src="https://script.google.com/a/~/macros/s/AKfycbzkxNuXD4nTzjCyVYnrDD-KQ7ivwDnPFHRG5lXS_M0HFIwpQNlwHUGD4mxZ4lqaJrBzqQ/exec" 
+          frameBorder="0" 
+          width="100%" 
+          height="1000px" 
+          title="Absensi Digital"
+          allow="clipboard-write; clipboard-read; autoplay"
+          sandbox="allow-forms allow-scripts allow-same-origin allow-popups allow-popups-to-escape-sandbox allow-downloads allow-modals"
+        />
       </div>
     </div>
   );

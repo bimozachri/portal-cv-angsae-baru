@@ -50,6 +50,8 @@ export default function FormPengajuanNoSuratPage() {
           width="100%"
           height="1000px"
           title="Form Pengajuan No. Surat"
+          allow="clipboard-write; clipboard-read; autoplay"
+          sandbox="allow-forms allow-scripts allow-same-origin allow-popups allow-popups-to-escape-sandbox allow-downloads allow-modals"
         />
       </div>
     </div>
