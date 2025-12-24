@@ -1,8 +1,8 @@
-import Link from "next/link"
-import Image from "next/image"
-import { ArrowLeft } from "lucide-react"
-import { Button } from "@/components/ui/button"
-import { ThemeToggle } from "@/components/theme-toggle"
+import Link from "next/link";
+import Image from "next/image";
+import { ArrowLeft } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { ThemeToggle } from "@/components/theme-toggle";
 
 export default function FormPengajuanNoSuratPage() {
   return (
@@ -11,19 +11,13 @@ export default function FormPengajuanNoSuratPage() {
       <header className="sticky top-0 z-50 bg-background/95 backdrop-blur-md border-b border-border">
         <div className="container mx-auto px-4 h-16 flex items-center justify-between">
           <Link href="/" className="flex items-center gap-3">
-            <Image
-              src="/images/image.png"
-              alt="CV Angsae Baru Logo"
-              width={40}
-              height={40}
-              className="object-contain"
-            />
+            <Image src="/images/image.png" alt="CV Angsae Baru Logo" width={40} height={40} className="object-contain" />
             <span className="font-bold text-lg text-foreground hidden sm:block">CV Angsae Baru</span>
           </Link>
 
           <div className="flex items-center gap-2">
-            <ThemeToggle /> 
-            
+            <ThemeToggle />
+
             <Button asChild variant="outline" size="sm">
               <Link href="/" className="flex items-center gap-2">
                 <ArrowLeft className="h-4 w-4" />
@@ -51,9 +45,8 @@ export default function FormPengajuanNoSuratPage() {
           height="1000px"
           title="Form Pengajuan No. Surat"
           allow="clipboard-write; clipboard-read; autoplay"
-          sandbox="allow-forms allow-scripts allow-same-origin allow-popups allow-popups-to-escape-sandbox allow-downloads allow-modals"
         />
       </div>
     </div>
-  )
+  );
 }
