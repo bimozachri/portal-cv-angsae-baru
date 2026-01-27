@@ -64,7 +64,7 @@ const services = [
     description: "Pengajuan surat tugas dan anggaran perjalanan dinas luar kota.",
     icon: Briefcase,
     buttonText: "Isi Form",
-    href: "https://docs.google.com/forms/d/e/1FAIpQLSdhsP0C3nv5Rg0S0uvB2C7_pmAUuhQftpNnkBaCY3EDNRVOcw/viewform", // External
+    href: "/form-perjalanan-dinas", // Ubah dari link eksternal menjadi link internal
     color: "accent" as const,
   },
   {
