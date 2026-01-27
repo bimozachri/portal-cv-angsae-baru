@@ -20,12 +20,12 @@ export function Footer() {
                 />
               </div>
               <div>
-                <p className="font-semibold text-background">CV. Angsae Baru</p>
+                <p className="font-semibold text-background">Angsae Baru Group</p>
                 <p className="text-sm text-background/60">Portal Office</p>
               </div>
             </div>
             <p className="text-background/70 text-sm max-w-md leading-relaxed">
-              Portal layanan digital terpadu untuk mengelola administrasi dan aktivitas kerja karyawan CV. Angsae Baru
+              Portal layanan digital terpadu untuk mengelola administrasi dan aktivitas kerja karyawan Angsae Baru Group
               dengan mudah dan efisien.
             </p>
           </div>
@@ -109,7 +109,7 @@ export function Footer() {
         <div className="border-t border-background/10 mt-10 pt-6">
           <div className="flex flex-col md:flex-row justify-between items-center gap-4">
             <p className="text-sm text-background/50">
-              © {new Date().getFullYear()} CV. Angsae Baru. All rights reserved.
+              © {new Date().getFullYear()} Angsae Baru Group. All rights reserved.
             </p>
             <p className="text-sm text-background/50">angsaebaru.com</p>
           </div>

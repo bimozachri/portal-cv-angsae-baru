@@ -69,7 +69,7 @@ export default function VideoListPage() {
       <main className="container mx-auto px-4 py-8">
         <div className="max-w-4xl mx-auto mb-8 text-center">
           <h1 className="text-3xl font-bold mb-4">Pusat Informasi & Tutorial</h1>
-          <p className="text-muted-foreground">Kumpulan video panduan operasional dan sosialisasi kebijakan CV. Angsae Baru.</p>
+          <p className="text-muted-foreground">Kumpulan video panduan operasional dan sosialisasi kebijakan Angsae Baru Group.</p>
         </div>
 
         <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-2 max-w-5xl mx-auto">

@@ -12,7 +12,7 @@ export default function AbsensiDigitalPage() {
         <div className="container mx-auto px-4 h-16 flex items-center justify-between">
           <Link href="/" className="flex items-center gap-3">
             <Image src="/images/image.png" alt="CV Angsae Baru Logo" width={40} height={40} className="object-contain" />
-            <span className="font-bold text-lg text-foreground hidden sm:block">CV Angsae Baru</span>
+            <span className="font-bold text-lg text-foreground hidden sm:block">Angsae Baru Group</span>
           </Link>
 
           {/* Wrapper untuk tombol-tombol di kanan */}
@@ -45,7 +45,7 @@ export default function AbsensiDigitalPage() {
           width="100%"
           height="1000px"
           title="Absensi Digital"
-          allow="clipboard-write; clipboard-read; autoplay"
+          allow="clipboard-write; clipboard-read;  autoplay; camera; microphone; geolocation"
         />
       </div>
     </div>

@@ -14,7 +14,7 @@ const videoData: Record<string, { title: string; youtubeId: string; description:
   "sosialisasi-bpjs": {
     title: "Sosialisasi BPJS Kesehatan",
     youtubeId: "tkNjd0DPhCg",
-    description: "Informasi penting mengenai BPJS Kesehatan untuk seluruh karyawan CV. Angsae Baru.",
+    description: "Informasi penting mengenai BPJS Kesehatan untuk seluruh karyawan Angsae Baru Group.",
   },
   "sosialisasi-absen-digital": {
     title: "Sosialisasi Absen Digital",

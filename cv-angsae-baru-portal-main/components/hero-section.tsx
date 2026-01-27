@@ -50,7 +50,7 @@ export function HeroSection() {
               isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
             }`}
           >
-            Portal Office <br/> <span className="text-primary">CV. Angsae Baru</span>
+            Portal Office <br/> <span className="text-primary">Angsae Baru Group</span>
           </h1>
 
           {/* Description */}

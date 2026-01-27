@@ -12,14 +12,24 @@ type Announcement = {
   active: boolean
 }
 
+// DATA PENGUMUMAN UPDATE
 const announcementsData: Announcement[] = [
   {
     id: "1",
-    title: "Libur Natal dan Cuti Bersama",
-    date: "25 - 26 Desember 2025",
+    title: "Jam Operasional Akhir Tahun",
+    date: "24 - 31 Des 2025",
     type: "event",
-    message: "Kantor akan libur operasional.",
-    active: true,
+    // Gunakan tanda backtick (`) agar bisa enter ke bawah
+    message: `
+* 💼 Rabu, 24-Des-2025 : Masuk Kantor untuk seluruh Karyawan
+* 📴 Kamis, 25-Des-2025 : Libur Natal 2025 (Tim tertentu lembur untuk persiapan project)
+* 💼 Jumat, 26-Des-2025 : Masuk Kantor untuk seluruh Karyawan
+* 📴 Sabtu, 27-Des-2025 : Libur (Tim tertentu lembur untuk persiapan project)
+* 📴 Minggu, 29-Des-2025 : Libur (Tim tertentu lembur untuk persiapan project)
+* 💼 Senin, 30-Des-2025 : Masuk Kantor untuk seluruh Karyawan
+* 💼 Selasa, 31-Des-2025 : Masuk Kantor untuk seluruh Karyawan
+    `,
+    active: true, 
   },
   {
     id: "2",
@@ -65,9 +75,19 @@ export function Announcements() {
   const getBorderColor = (type: string) => {
     switch (type) {
       case "urgent": return "border-l-4 border-l-red-500"
-      case "warning": return "border-l-4 border-l-yellow-500"
+      case "warning": return <div className="border-l-4 border-l-yellow-500" />
       case "event": return "border-l-4 border-l-blue-500"
       default: return "border-l-4 border-l-gray-300"
+    }
+  }
+
+  // Helper untuk border color string (karena di atas return JSX, kita butuh string untuk className)
+  const getBorderClass = (type: string) => {
+     switch (type) {
+      case "urgent": return "border-l-red-500"
+      case "warning": return "border-l-yellow-500"
+      case "event": return "border-l-blue-500"
+      default: return "border-l-gray-300"
     }
   }
 
@@ -85,9 +105,7 @@ export function Announcements() {
           {activeAnnouncements.map((item) => (
             <div
               key={item.id}
-              className={`relative flex flex-col gap-2 rounded-lg border p-4 shadow-sm transition-all hover:bg-accent/50 ${getBorderColor(
-                item.type
-              )}`}
+              className={`relative flex flex-col gap-2 rounded-lg border border-l-4 p-4 shadow-sm transition-all hover:bg-accent/50 ${getBorderClass(item.type)}`}
             >
               <div className="flex items-start justify-between">
                 <div className="flex items-center gap-2">
@@ -98,7 +116,9 @@ export function Announcements() {
                   {item.date}
                 </span>
               </div>
-              <p className="text-sm text-muted-foreground leading-relaxed">
+              
+              {/* PENTING: Class 'whitespace-pre-line' agar list ke bawah terbaca */}
+              <p className="text-sm text-muted-foreground leading-relaxed whitespace-pre-line">
                 {item.message}
               </p>
             </div>

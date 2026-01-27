@@ -63,7 +63,7 @@ export function Header() {
               className="h-10 w-10 object-contain"
             />
             <div className="hidden sm:block">
-              <p className="font-semibold text-foreground text-sm">CV. Angsae Baru</p>
+              <p className="font-semibold text-foreground text-sm">Angsae Baru Group</p>
               <p className="text-xs text-muted-foreground">Portal Office</p>
             </div>
           </Link>
