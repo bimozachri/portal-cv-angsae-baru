@@ -12,7 +12,8 @@ import {
   Clock,
   Search,
   Briefcase,
-  Receipt, // Icon untuk Klaim Operasional
+  Receipt,
+  ShieldCheck, // Icon baru untuk Approval
 } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 import { Input } from "@/components/ui/input";
@@ -24,7 +25,7 @@ const services = [
     description: "Form absensi harian untuk mencatat kehadiran masuk dan pulang kerja karyawan.",
     icon: UserCheck,
     buttonText: "Isi Absen",
-    href: "/absensi-digital", // Tetap Internal
+    href: "/absensi-digital",
     color: "primary" as const,
   },
   {
@@ -32,7 +33,7 @@ const services = [
     description: "Ajukan nomor surat untuk kepentingan bisnis dan administrasi resmi perusahaan.",
     icon: FileText,
     buttonText: "Isi Form",
-    href: "/form-pengajuan-no-surat", // Tetap Internal
+    href: "/form-pengajuan-no-surat",
     color: "secondary" as const,
   },
   {
@@ -40,7 +41,7 @@ const services = [
     description: "Formulir untuk mengajukan permohonan cuti tahunan, cuti besar, atau cuti lainnya.",
     icon: CalendarDays,
     buttonText: "Isi Form",
-    href: "https://docs.google.com/forms/d/e/1FAIpQLSdeO6fNTDfSp7Gm8v4hTjCsNItfkqL0I18eCkuc8gr2KitR8A/viewform", // External
+    href: "https://docs.google.com/forms/d/e/1FAIpQLSdeO6fNTDfSp7Gm8v4hTjCsNItfkqL0I18eCkuc8gr2KitR8A/viewform",
     color: "accent" as const,
   },
   {
@@ -48,7 +49,7 @@ const services = [
     description: "Formulir pemberitahuan ketidakhadiran dikarenakan sakit beserta upload surat dokter.",
     icon: Activity,
     buttonText: "Isi Form",
-    href: "https://docs.google.com/forms/d/e/1FAIpQLSdf5xaPhmA-UP1QQ-jFTZhGqc_KHh644utBIkzQwumWiLoIEQ/viewform", // External
+    href: "https://docs.google.com/forms/d/e/1FAIpQLSdf5xaPhmA-UP1QQ-jFTZhGqc_KHh644utBIkzQwumWiLoIEQ/viewform",
     color: "primary" as const,
   },
   {
@@ -56,7 +57,7 @@ const services = [
     description: "Formulir pengajuan dan persetujuan kerja lembur karyawan.",
     icon: Clock,
     buttonText: "Isi Form",
-    href: "https://docs.google.com/forms/d/e/1FAIpQLSdHE9boh7qmdnXPyvQvjQ3iLvoczltk482hDUJTVM_CiTtP5A/viewform", // External
+    href: "https://docs.google.com/forms/d/e/1FAIpQLSdHE9boh7qmdnXPyvQvjQ3iLvoczltk482hDUJTVM_CiTtP5A/viewform",
     color: "secondary" as const,
   },
   {
@@ -64,16 +65,24 @@ const services = [
     description: "Pengajuan surat tugas dan anggaran perjalanan dinas luar kota.",
     icon: Briefcase,
     buttonText: "Isi Form",
-    href: "/form-perjalanan-dinas", // Ubah dari link eksternal menjadi link internal
+    href: "/form-perjalanan-dinas",
     color: "accent" as const,
   },
   {
-    title: "Form Klaim Operasional Non-Perjalanan Dinas",
+    title: "Form Klaim Operasional",
     description: "Formulir pengajuan penggantian biaya operasional kantor (Reimbursement).",
     icon: Receipt,
     buttonText: "Isi Form",
-    href: "/form-klaim-operasional", // External
+    href: "/form-klaim-operasional",
     color: "primary" as const,
+  },
+  {
+    title: "Approval Klaim",
+    description: "Portal khusus atasan/manajer untuk menyetujui pengajuan klaim operasional.",
+    icon: ShieldCheck,
+    buttonText: "Buka Portal",
+    href: "/approval-klaim", // Mengarah ke halaman proteksi password
+    color: "secondary" as const,
   },
   {
     title: "Dezavasi's Sales Form App",
@@ -81,15 +90,15 @@ const services = [
     icon: ShoppingCart,
     buttonText: "Isi Form",
     href: "https://docs.google.com/forms/d/e/1FAIpQLSewbtzCYbBgxQfgmeRme2QKK4e42m9ePhpEf25Q6MlHBB85JQ/viewform",
-    color: "secondary" as const,
+    color: "accent" as const,
   },
   {
     title: "Video Sosialisasi",
     description: "Akses video tutorial dan panduan lengkap cara menggunakan portal dan layanan digital perusahaan.",
     icon: PlayCircle,
     buttonText: "Lihat Video",
-    href: "/video-sosialisasi", // Tetap Internal
-    color: "accent" as const,
+    href: "/video-sosialisasi",
+    color: "primary" as const,
   },
 ];
 

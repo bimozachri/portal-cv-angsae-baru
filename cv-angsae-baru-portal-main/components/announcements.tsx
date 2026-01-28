@@ -16,18 +16,12 @@ type Announcement = {
 const announcementsData: Announcement[] = [
   {
     id: "1",
-    title: "Jam Operasional Akhir Tahun",
-    date: "24 - 31 Des 2025",
+    title: "Tidak Ada Pengumuman Baru",
+    date: "-",
     type: "event",
     // Gunakan tanda backtick (`) agar bisa enter ke bawah
     message: `
-* 💼 Rabu, 24-Des-2025 : Masuk Kantor untuk seluruh Karyawan
-* 📴 Kamis, 25-Des-2025 : Libur Natal 2025 (Tim tertentu lembur untuk persiapan project)
-* 💼 Jumat, 26-Des-2025 : Masuk Kantor untuk seluruh Karyawan
-* 📴 Sabtu, 27-Des-2025 : Libur (Tim tertentu lembur untuk persiapan project)
-* 📴 Minggu, 29-Des-2025 : Libur (Tim tertentu lembur untuk persiapan project)
-* 💼 Senin, 30-Des-2025 : Masuk Kantor untuk seluruh Karyawan
-* 💼 Selasa, 31-Des-2025 : Masuk Kantor untuk seluruh Karyawan
+Tidak ada Pengumuman. Semangat Bekerja Semuanya!
     `,
     active: true, 
   },
