@@ -72,7 +72,7 @@ const services = [
     description: "Formulir pengajuan penggantian biaya operasional kantor (Reimbursement).",
     icon: Receipt,
     buttonText: "Isi Form",
-    href: "https://docs.google.com/forms/d/e/1FAIpQLSeNsXiBpNsuP3ZIOid-RqkRUm63q95Cx0Okx7TfYYuCyahqPA/viewform", // External
+    href: "/form-klaim-operasional", // External
     color: "primary" as const,
   },
   {

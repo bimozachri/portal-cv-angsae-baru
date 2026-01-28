@@ -5,55 +5,53 @@ import { Footer } from "@/components/footer";
 import { ServiceCard } from "@/components/service-card";
 import { Car, Bike, Train, Building2 } from "lucide-react";
 
-// Data didefinisikan di dalam file bertanda "use client"
-// agar tidak terjadi error serialisasi fungsi ikon
 const spdMenus = [
   {
     title: "SPD Kendaraan Kantor",
-    description: "Formulir klaim perjalanan dinas menggunakan kendaraan operasional kantor.",
+    description: "Gunakan kendaraan operasional perusahaan.",
     icon: Building2,
-    buttonText: "Buka Form",
     href: "/form-perjalanan-dinas/kendaraan-kantor",
     color: "primary" as const,
+    buttonText: "Buka Form"
   },
   {
     title: "SPD Mobil Pribadi",
-    description: "Formulir klaim perjalanan dinas menggunakan mobil pribadi.",
+    description: "Gunakan mobil pribadi untuk dinas.",
     icon: Car,
-    buttonText: "Buka Form",
     href: "/form-perjalanan-dinas/mobil-pribadi",
     color: "secondary" as const,
+    buttonText: "Buka Form"
   },
   {
     title: "SPD Motor Pribadi",
-    description: "Formulir klaim perjalanan dinas menggunakan sepeda motor pribadi.",
+    description: "Gunakan sepeda motor pribadi untuk dinas.",
     icon: Bike,
-    buttonText: "Buka Form",
     href: "/form-perjalanan-dinas/motor-pribadi",
     color: "accent" as const,
+    buttonText: "Buka Form"
   },
   {
     title: "SPD TSP Umum",
-    description: "Formulir klaim perjalanan dinas menggunakan transportasi umum.",
+    description: "Gunakan transportasi umum (Kereta, Pesawat, dll).",
     icon: Train,
-    buttonText: "Buka Form",
     href: "/form-perjalanan-dinas/tsp-umum",
     color: "primary" as const,
+    buttonText: "Buka Form"
   },
 ];
 
-export default function PerjalananDinasPage() {
+export default function SelectionPage() {
   return (
     <div className="min-h-screen flex flex-col bg-background">
       <Header />
       <main className="flex-1 container mx-auto px-4 py-16">
         <div className="text-center mb-12">
-          <h1 className="text-3xl font-bold text-foreground mb-4">Pilih Jenis Perjalanan Dinas</h1>
-          <p className="text-muted-foreground max-w-2xl mx-auto">Silakan pilih kategori perjalanan dinas untuk melanjutkan pengisian form.</p>
+          <h1 className="text-3xl font-bold">Pilih Kategori Perjalanan Dinas</h1>
+          <p className="text-muted-foreground mt-2">Silakan pilih jenis transportasi yang Anda gunakan.</p>
         </div>
-        <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-2 max-w-4xl mx-auto">
-          {spdMenus.map((menu, index) => (
-            <ServiceCard key={index} {...menu} />
+        <div className="grid gap-6 sm:grid-cols-2 max-w-4xl mx-auto">
+          {spdMenus.map((menu, idx) => (
+            <ServiceCard key={idx} {...menu} />
           ))}
         </div>
       </main>

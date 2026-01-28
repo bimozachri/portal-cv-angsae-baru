@@ -1,46 +1,29 @@
-"use client";
+import SpdClientPage from "./client-page";
 
-import { Header } from "@/components/header";
-import { Footer } from "@/components/footer";
-import { useParams } from "next/navigation";
+// Daftar kunci URL untuk keperluan generateStaticParams
+const URL_KEYS = [
+  "kendaraan-kantor",
+  "mobil-pribadi",
+  "motor-pribadi",
+  "tsp-umum",
+];
 
-const GAS_URLS: Record<string, string> = {
-  "kendaraan-kantor": "https://script.google.com/macros/s/AKfycbyF2tiIoazsLd1OzIBkoh68CUgVojhFmkKuMzu_4Ko5gIT859sccZxnTX4Ji8I-M-bX/exec",
-  "mobil-pribadi": "https://script.google.com/macros/s/AKfycbwffpsh2CFXI_QcNQZmTP4RfKQvPUwZzSPZv2JL8JltsW93PQO0UxkvyojHwzJBSto/exec",
-  "motor-pribadi": "https://script.google.com/macros/s/AKfycbxMU7r-PkjhiQ9PugyoP3Hyarpt7sf8esyVLhseD531_REi7SEKDw0Zwp5mVZ6Nu5Dp/exec",
-  "tsp-umum": "https://script.google.com/macros/s/AKfycbz0nugRS_lemYNWVhI5zjY-nsGMtAfs7_TILCH4k1StGzw2rAvhYGSYSgFtWvbl7e3S/exec",
-};
+export function generateStaticParams() {
+  return URL_KEYS.map((type) => ({
+    type: type,
+  }));
+}
 
-export default function SpdIframePage() {
-  const params = useParams();
-  const type = params?.type as string;
-  const iframeUrl = GAS_URLS[type];
-
-  if (!iframeUrl) {
-    return (
-      <div className="min-h-screen flex flex-col">
-        <Header />
-        <div className="flex-1 flex items-center justify-center">
-          <p className="text-muted-foreground">Formulir tidak ditemukan.</p>
-        </div>
-        <Footer />
-      </div>
-    );
-  }
-
-  return (
-    <div className="min-h-screen flex flex-col bg-background">
-      <Header />
-      <main className="flex-1 flex flex-col h-[calc(100vh-140px)]"> 
-        {/* h-[calc(100vh-140px)] memberikan ruang otomatis agar iframe pas di antara header & footer */}
-        <iframe
-          src={iframeUrl}
-          className="w-full h-full border-0 shadow-inner"
-          title={`Form ${type}`}
-          allow="geolocation; microphone; camera"
-        />
-      </main>
-      <Footer />
-    </div>
-  );
+// PERUBAHAN PENTING DI SINI:
+// 1. Tambahkan 'async' sebelum function
+// 2. Ubah tipe params menjadi 'Promise'
+export default async function Page({ 
+  params 
+}: { 
+  params: Promise<{ type: string }> 
+}) {
+  // 3. Wajib di-await sebelum propertinya bisa dibaca
+  const resolvedParams = await params;
+  
+  return <SpdClientPage type={resolvedParams.type} />;
 }
