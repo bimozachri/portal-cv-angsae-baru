@@ -81,7 +81,7 @@ const services = [
     description: "Portal khusus atasan/manajer untuk menyetujui pengajuan klaim operasional.",
     icon: ShieldCheck,
     buttonText: "Buka Portal",
-    href: "/approval-klaim", // Mengarah ke halaman proteksi password
+    href: "/approval-team-leader", // Mengarah ke halaman proteksi password
     color: "secondary" as const,
   },
   {

@@ -2,71 +2,147 @@
 
 import Link from "next/link";
 import Image from "next/image";
-import { ArrowLeft, Loader2, Lock, UserCheck } from "lucide-react";
+import { ArrowLeft, Loader2, UserCheck, LogOut, Lock, Eye, EyeOff } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { ThemeToggle } from "@/components/theme-toggle";
 import { useState, useEffect } from "react";
 
-// --- KONFIGURASI KHUSUS TEAM LEADER ---
-// 1. Masukkan Link Google Apps Script (Khusus Approval TL jika ada, atau pakai yang sama)
-const GAS_APPROVAL_TL_URL = "MASUKKAN_LINK_GAS_APPROVAL_DISINI";
-
-// 2. PIN Khusus Team Leader (Bisa dibedakan dengan PIN lain)
-const TL_PIN = "998877";
+// --- KONFIGURASI ---
+const GAS_APPROVAL_URL = "https://script.google.com/macros/s/AKfycbyOdkuY-Dv-mvhHCor1ND0w144YXxSa4fCF7NkbSC5kDMq15xD0aY5tCOfQL3nmrGhI/exec";
+const ACCESS_PIN = "998877"; 
 
 export default function ApprovalTeamLeaderPage() {
   const [isMounted, setIsMounted] = useState(false);
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [pinInput, setPinInput] = useState("");
-  const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState("");
+  const [isLoading, setIsLoading] = useState(true);
+  
+  // State baru untuk fitur Show/Hide Password
+  const [showPassword, setShowPassword] = useState(false);
 
   useEffect(() => {
     setIsMounted(true);
-    // Cek sesi login khusus TL
-    const sessionAuth = sessionStorage.getItem("auth_tl");
-    if (sessionAuth === "true") {
-      setIsAuthenticated(true);
-    }
   }, []);
 
   const handleLogin = (e: React.FormEvent) => {
     e.preventDefault();
-    if (pinInput === TL_PIN) {
+    if (pinInput === ACCESS_PIN) {
       setIsAuthenticated(true);
-      sessionStorage.setItem("auth_tl", "true");
       setError("");
     } else {
-      setError("PIN Team Leader salah.");
+      setError("PIN Salah! Akses ditolak.");
       setPinInput("");
     }
   };
 
-  if (!isMounted) return <div className="min-h-screen bg-background" />;
+  const handleLogout = () => {
+    setIsAuthenticated(false);
+    setPinInput("");
+    setShowPassword(false); // Reset visibility saat logout
+    setIsLoading(true); 
+  };
 
-  // --- TAMPILAN LOGIN ---
+  if (!isMounted) return null;
+
+  // --- BAGIAN HEADER ---
+  const HeaderSection = () => (
+    <header className="sticky top-0 z-50 bg-background/95 backdrop-blur-md border-b border-border">
+      <div className="container mx-auto px-4 h-16 flex items-center justify-between">
+        <Link href="/" className="flex items-center gap-3">
+          <Image 
+            src="/images/image.png" 
+            alt="CV Angsae Baru Logo" 
+            width={40} 
+            height={40} 
+            className="object-contain" 
+          />
+          <span className="font-bold text-lg text-foreground hidden sm:block">
+            Angsae Baru Group
+          </span>
+        </Link>
+
+        <div className="flex items-center gap-2">
+          <ThemeToggle />
+          
+          {isAuthenticated ? (
+            <Button 
+              variant="destructive" 
+              size="sm" 
+              onClick={handleLogout}
+              className="gap-2"
+            >
+              <LogOut className="h-4 w-4" />
+              <span className="hidden sm:inline">Keluar</span>
+            </Button>
+          ) : (
+            <Button asChild variant="outline" size="sm">
+              <Link href="/" className="flex items-center gap-2">
+                <ArrowLeft className="h-4 w-4" />
+                <span className="hidden sm:inline">Kembali ke Portal</span>
+              </Link>
+            </Button>
+          )}
+        </div>
+      </div>
+    </header>
+  );
+
+  // --- TAMPILAN 1: FORM LOGIN (Belum Masuk) ---
   if (!isAuthenticated) {
     return (
       <div className="min-h-screen flex flex-col bg-background">
-        <HeaderSimple />
+        <HeaderSection />
         <main className="flex-1 flex items-center justify-center p-4">
           <div className="w-full max-w-md space-y-6">
             <div className="text-center space-y-2">
-              <div className="w-16 h-16 bg-blue-100 dark:bg-blue-900/20 rounded-full flex items-center justify-center mx-auto mb-4">
-                <UserCheck className="w-8 h-8 text-blue-600 dark:text-blue-400" />
+              <div className="w-16 h-16 bg-blue-100 dark:bg-blue-900/30 rounded-full flex items-center justify-center mx-auto mb-4">
+                <Lock className="w-8 h-8 text-blue-600 dark:text-blue-400" />
               </div>
-              <h1 className="text-2xl font-bold tracking-tight">Portal Team Leader</h1>
-              <p className="text-muted-foreground">Halaman khusus otorisasi dan approval Team Leader. Masukkan PIN akses Anda.</p>
+              <h1 className="text-2xl font-bold">Portal Team Leader</h1>
+              <p className="text-muted-foreground">
+                Sesi tidak disimpan demi keamanan. <br/>
+                Silakan masukkan PIN untuk mengakses.
+              </p>
             </div>
 
             <form onSubmit={handleLogin} className="space-y-4">
               <div className="space-y-2">
-                <Input type="password" placeholder="PIN Team Leader" value={pinInput} onChange={(e) => setPinInput(e.target.value)} className="text-center text-lg tracking-widest" autoFocus />
-                {error && <p className="text-sm text-red-500 text-center font-medium animate-pulse">{error}</p>}
+                <div className="relative">
+                  <Input
+                    type={showPassword ? "text" : "password"} // Dinamis berdasarkan state
+                    placeholder="Masukkan PIN Akses"
+                    value={pinInput}
+                    onChange={(e) => setPinInput(e.target.value)}
+                    className="text-center text-lg tracking-widest h-12 pr-10" // pr-10 agar teks tidak tertutup ikon
+                    autoFocus
+                  />
+                  {/* Tombol Toggle Show/Hide */}
+                  <Button
+                    type="button"
+                    variant="ghost"
+                    size="sm"
+                    className="absolute right-0 top-0 h-full px-3 hover:bg-transparent"
+                    onClick={() => setShowPassword(!showPassword)}
+                  >
+                    {showPassword ? (
+                      <EyeOff className="h-4 w-4 text-muted-foreground" />
+                    ) : (
+                      <Eye className="h-4 w-4 text-muted-foreground" />
+                    )}
+                    <span className="sr-only">Toggle password visibility</span>
+                  </Button>
+                </div>
+
+                {error && (
+                  <p className="text-sm text-red-500 text-center font-medium animate-pulse">
+                    {error}
+                  </p>
+                )}
               </div>
-              <Button type="submit" className="w-full h-11 text-base bg-blue-600 hover:bg-blue-700">
-                Masuk Portal
+              <Button type="submit" className="w-full h-11 text-base bg-blue-600 hover:bg-blue-700 text-white">
+                Buka Portal
               </Button>
             </form>
           </div>
@@ -75,62 +151,45 @@ export default function ApprovalTeamLeaderPage() {
     );
   }
 
-  // --- TAMPILAN APPROVAL (IFRAME) ---
+  // --- TAMPILAN 2: DASHBOARD APPROVAL (Sudah Masuk) ---
   return (
     <div className="min-h-screen flex flex-col bg-background">
-      <HeaderSimple />
+      <HeaderSection />
 
-      {/* Judul Halaman Khusus */}
-      <div className="bg-blue-50 dark:bg-blue-950/20 border-b border-border py-4">
-        <div className="container mx-auto px-4 flex items-center gap-2">
-          <UserCheck className="w-5 h-5 text-blue-600 dark:text-blue-400" />
-          <div>
-            <h1 className="text-xl md:text-2xl font-bold text-foreground">Approval Team Leader</h1>
-            <p className="text-sm text-muted-foreground">Level 1 Approval System</p>
+      {/* Judul Halaman */}
+      <div className="bg-primary/5 border-b border-border py-4">
+        <div className="container mx-auto px-4">
+          <div className="flex items-center gap-2">
+            <UserCheck className="w-5 h-5 text-primary" />
+            <h1 className="text-xl md:text-2xl font-bold text-foreground">
+              Dashboard Approval
+            </h1>
           </div>
+          <p className="text-sm text-muted-foreground mt-1">
+            Kelola persetujuan klaim operasional karyawan.
+          </p>
         </div>
       </div>
 
+      {/* Iframe Container */}
       <div className="flex-1 w-full relative">
         {isLoading && (
-          <div className="absolute inset-0 z-10 flex flex-col items-center justify-center bg-background/50 backdrop-blur-sm">
-            <div className="flex flex-col items-center gap-2">
-              <Loader2 className="w-8 h-8 text-blue-600 animate-spin" />
-              <p className="text-sm text-muted-foreground">Menyiapkan Data Approval...</p>
-            </div>
+          <div className="absolute inset-0 z-10 flex flex-col items-center justify-center bg-background/80 backdrop-blur-sm">
+            <Loader2 className="w-10 h-10 text-primary animate-spin mb-2" />
+            <p className="text-muted-foreground font-medium">Memuat Data Approval...</p>
           </div>
         )}
-
+        
         <iframe
-          src={GAS_APPROVAL_TL_URL}
-          className={`w-full h-full min-h-[1000px] border-0 transition-opacity duration-500 ${isLoading ? "opacity-0" : "opacity-100"}`}
-          title="Form Approval Team Leader"
+          src={GAS_APPROVAL_URL}
+          className={`w-full h-full min-h-[800px] border-0 transition-opacity duration-500 ${
+            isLoading ? "opacity-0" : "opacity-100"
+          }`}
+          title="Google Apps Script Approval"
           onLoad={() => setIsLoading(false)}
-          allow="accelerometer; autoplay; camera; encrypted-media; geolocation; gyroscope; microphone; midi; payment; usb; vr; xr-spatial-tracking"
+          allow="geolocation; microphone; camera"
         />
       </div>
     </div>
-  );
-}
-
-function HeaderSimple() {
-  return (
-    <header className="sticky top-0 z-50 bg-background/95 backdrop-blur-md border-b border-border">
-      <div className="container mx-auto px-4 h-16 flex items-center justify-between">
-        <Link href="/" className="flex items-center gap-3">
-          <Image src="/images/image.png" alt="Logo" width={40} height={40} className="object-contain" />
-          <span className="font-bold text-lg text-foreground hidden sm:block">Angsae Baru Group</span>
-        </Link>
-        <div className="flex items-center gap-2">
-          <ThemeToggle />
-          <Button asChild variant="outline" size="sm">
-            <Link href="/" className="flex items-center gap-2">
-              <ArrowLeft className="h-4 w-4" />
-              <span className="hidden sm:inline">Kembali</span>
-            </Link>
-          </Button>
-        </div>
-      </div>
-    </header>
   );
 }
